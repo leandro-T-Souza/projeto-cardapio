@@ -25,7 +25,7 @@
 
   <link rel="stylesheet" href="./styles/output.css" />
 
-  <title> Hamburgueria leandro Dev!</title>
+  <title> burrger leandro Dev!</title>
 </head>
 
 <body>
@@ -206,31 +206,56 @@
   <!-- FIM MENU -->
 
   <!-- MODAL CART -->
-  <div class="bg-black/60 w-full h-full fixed top-0 left-0 z-[99] items-center justify-center hidden" id="cart-modal">
+<div class="bg-black/60 w-full h-full fixed top-0 left-0 z-[99] items-center justify-center hidden" id="cart-modal">
+  <div class="bg-white p-5 rounded-md min-w-[90%] md:min-w-[600px]">
+    <h2 class="text-center font-bold text-2xl mb-2">Meu carrinho</h2>
 
-    <div class="bg-white p-5 rounded-md min-w-[90%] md:min-w-[600px]">
-      <h2 class="text-center font-bold text-2xl mb-2">Meu carrinho</h2>
+    <div id="cart-items" class="flex justify-between mb-2 flex-col max-h-[400px] overflow-auto"></div>
 
-      <div id="cart-items" class="flex justify-between mb-2 flex-col max-h-[400px] overflow-auto"></div>
+    <p class="font-bold">Total: <span id="cart-total">0.00</span></p>
 
-      <p class="font-bold">Total: <span id="cart-total">0.00</span></p>
+    <!-- Endereço -->
+    <p class="font-bold mt-4">Endereço de entrega:</p>
+    <input type="text" placeholder="Digite seu endereço completo..." id="address"
+      class="w-full border-2 p-1 rounded my-1" />
+    <p class="text-red-500 hidden" id="address-warn">Digite seu endereço completo!</p>
 
-      <p class="font-bold mt-4">Endereço de entrega:</p>
-      <input type="text" placeholder="Digite seu endereço completo..." id="address"
-        class="w-full border-2 p-1 rounded my-1" />
-      <p class="text-red-500 hidden" id="address-warn">Digite seu endereço completo!</p>
+    <!-- Nome -->
+    <p class="font-bold mt-4">Nome:</p>
+    <input type="text" id="customer-name" placeholder="Digite seu nome" class="w-full border p-1 rounded my-1" />
+    <small id="name-warn" class="hidden text-red-500">Por favor, insira seu nome</small>
 
-      <div class="flex items-center justify-between mt-5 w-full">
-        <input type="text" id="customer-name" placeholder="Digite seu nome" class="border p-1 rounded" />
-        <small id="name-warn" class="hidden text-red-500">Por favor, insira seu nome</small>
+    <!-- CEP -->
+    <p class="font-bold mt-4">CEP:</p>
+    <input type="text" id="cep" placeholder="Digite seu CEP" class="w-full border p-1 rounded my-1" />
+    <small id="cep-warn" class="hidden text-red-500">Por favor, insira seu CEP</small>
 
-        <button id="close-modal-btn">Fechar</button>
-        <button id="checkout-btn" class="bg-green-500 text-white px-4 py-1 rounded">Finalizar pedido</button>
-      </div>
+    <!-- Forma de pagamento -->
+    <p class="font-bold mt-4">Forma de pagamento:</p>
+    <select id="payment-method" class="w-full border p-1 rounded my-1">
+      <option value="">Selecione...</option>
+      <option value="debito">Débito</option>
+      <option value="credito">Crédito</option>
+      <option value="pix">Pix</option>
+      <option value="dinheiro">Dinheiro</option>
+    </select>
+    <small id="payment-warn" class="hidden text-red-500">Por favor, selecione a forma de pagamento</small>
 
+    <!-- Campo para troco (aparece só se for dinheiro) -->
+    <div id="cash-section" class="hidden mt-4">
+      <p class="font-bold">Valor entregue em dinheiro:</p>
+      <input type="number" id="cash-amount" placeholder="Digite o valor que vai pagar" class="w-full border p-1 rounded my-1" />
+      <p class="font-bold">Troco: <span id="change">0.00</span></p>
     </div>
 
+    <!-- Botões -->
+    <div class="flex flex-col gap-3 items-center justify-center mt-5 w-full">
+      <button id="checkout-btn" class="bg-green-500 text-white px-4 py-1 rounded w-full">Finalizar pedido</button>
+      <button id="close-modal-btn" class="bg-gre text-black px-4 py-1 rounded w-full">Fechar</button>
+    </div>
   </div>
+</div>
+
   <!-- FIM MODAL CART -->
 
   <!-- BUTTON CART FOOTER -->

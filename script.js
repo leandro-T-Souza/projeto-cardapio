@@ -175,18 +175,22 @@ checkoutBtn.addEventListener("click", function(){
 
   // Monta lista de itens formatada
   const cartItems = cart.map((item) => {
-    return `🍔 ${item.name} | Qtd: ${item.quantity} | R$${item.price.toFixed(2)}`
-  }).join("\n")
+    return `🍔 ${item.name}\n   Quantidade: ${item.quantity}\n   Preço: R$ ${item.price.toFixed(2)}`
+  }).join("\n\n")
+
+  // Calcula total
+  const totalValue = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
   // Mensagem final com nome e endereço
   const message = encodeURIComponent(
-    `📋 Pedido de: ${nameInput.value}\n\n${cartItems}\n\n📍 Endereço: ${addressInput.value}`
+    `✅ *NOVO PEDIDO* ✅\n\n👤 *Cliente:* ${nameInput.value}\n\n📦 *Itens do Pedido:*\n${cartItems}\n\n💰 *Total:* R$ ${totalValue.toFixed(2)}\n\n📍 *Endereço de Entrega:*\n${addressInput.value}\n\n⏱️ *Tempo de Entrega:* 30 a 40 minutos\n\nObrigado pela preferência! 🙏`
   )
 
   const phone = "NUMERO_DO_TELEFONE" // Coloque aqui o número do restaurante
 
   // Abre WhatsApp com mensagem pronta
   window.open(`https://wa.me/${13981369796}?text=${message}`, "_blank")
+  
 
   // Limpa carrinho após envio
   cart = [];
